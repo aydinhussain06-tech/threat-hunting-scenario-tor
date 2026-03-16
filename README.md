@@ -102,37 +102,30 @@ Date: March 16, 2026
 Device Name: threat-hunt-lab
 Account: myvmwindows
 
-
-Phase 1: Tor Browser Download & Installation
+## Phase 1: Tor Browser Download & Installation
 00:38:02 UTC | File Download
 - Event: A file named tor-browser-windows-x86_64-portable-15.0.7.exe was downloaded or moved into the user's Downloads directory.
 - Path: C:\Users\myvmWindows\Downloads\tor-browser-windows-x86_64-portable-15.0.7.exe
-
 
 00:46:04 UTC | Installer Execution (Evasion Attempt)
 Event: The Tor Browser portable installer was executed from the Downloads folder. The user appended the /S command-line switch to run the installer silently, preventing installation prompts from appearing on the screen.
 SHA256: 958626901dbe17fc003ed671b61b3656375e6f0bc06c9dff60bd2f80d4ace21b
 
-
 00:46:21 UTC - 00:46:32 UTC | Tor Components & Shortcut Creation
 Event: The silent installation extracted multiple Tor-related files to a new folder on the Desktop (C:\Users\myvmWindows\Desktop\Tor Browser\). Core files created included tor.exe and various license text files (tor.txt, Torbutton.txt, Tor-Launcher.txt).
 Event: A shortcut file named Tor Browser.lnk was created on the user's Desktop for quick access.
 
-
-Phase 2: Browser Execution & Local Configuration
+## Phase 2: Browser Execution & Local Configuration
 00:47:47 UTC - 00:47:51 UTC | Tor Browser Launch
 Event: The user launched the Tor Browser. This initiated multiple instances of firefox.exe (which is the modified core engine for the Tor Browser) from the C:\Users\myvmWindows\Desktop\Tor Browser\Browser\ directory.
-
 
 00:47:52 UTC | Tor Daemon Started
 - Event: The primary tor.exe process was spawned with extensive command-line arguments to establish the local Tor proxy. It bound the Control Port to 127.0.0.1:9151 and the SOCKS proxy to 127.0.0.1:9150.
 - Path: C:\Users\myvmWindows\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe
 
-
-Phase 3: Network Connectivity & Active Browsing
+## Phase 3: Network Connectivity & Active Browsing
 00:48:21 UTC | Local Proxy Connection
 Event: The firefox.exe browser process successfully made a local network connection to 127.0.0.1 on port 9150 to route its web traffic through the local Tor SOCKS proxy.
-
 
 00:48:23 UTC - 00:48:28 UTC | Tor Network Circuits Established
 Event: The tor.exe daemon successfully made outbound network connections to known remote Tor entry nodes to establish circuits.
@@ -140,20 +133,16 @@ Connections: * 23.129.64.147 over port 443
 213.164.193.245 over port 9001
 192.42.116.51 over port 443
 
-
 00:48:46 UTC - 00:54:23 UTC | Active Browsing Session
 Event: Multiple child processes of firefox.exe were continually created. These correspond to the user opening new tabs, utility workers, and interacting with websites within the Tor Browser.
-
 
 00:59:23 UTC | Additional Tor Network Connection
 Event: tor.exe established another successful outbound connection to 51.15.206.7 over port 443, likely rotating circuits or fetching additional consensus data.
 
-
-Phase 4: Post-Browsing Artifact Creation
+## Phase 4: Post-Browsing Artifact Creation
 02:28:55 UTC | Suspicious File Creation
 Event: A new text file named tor-shopping-list.txt was created in the user's Documents folder.
 Path: C:\Users\myvmWindows\Documents\tor-shopping-list.txt
-
 
 02:28:56 UTC | Recent Files Update
 Event: A Windows shortcut artifact (tor-shopping-list.lnk) was generated in the AppData\Roaming\Microsoft\Windows\Recent\ directory, confirming the user actively interacted with and opened the newly created shopping list document following their Tor browsing session.
