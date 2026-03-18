@@ -97,10 +97,10 @@ DeviceNetworkEvents
 
 ## Chronological Event Timeline 
 
-Incident Timeline: Tor Browser Usage
-Date: March 16, 2026
-Device Name: threat-hunt-lab
-Account: myvmwindows
+- Incident Timeline: Tor Browser Usage
+- Date: March 16, 2026
+- Device Name: threat-hunt-lab
+- Account: myvmwindows
 
 ## Phase 1: Tor Browser Download & Installation
 00:38:02 UTC | File Download
